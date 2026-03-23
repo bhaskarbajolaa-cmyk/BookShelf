@@ -1,0 +1,10 @@
+# Ignore compiled C++ binaries and object files
+bin/
+obj/
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore OS-generated files
+.DS_Store

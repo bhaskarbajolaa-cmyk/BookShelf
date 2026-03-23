@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: bhaskar
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: bookshelf
+    ports:
+      - "5432:5432" # Keeps port 5432 open so your Python script can still seed it
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  backend:
+    build: . # Tells it to use the Dockerfile in this folder
+    ports:
+      - "8080:8080" # Maps the C++ web server to your browser
+    depends_on:
+      - db
+    restart: always
+
+volumes:
+  postgres-data:
